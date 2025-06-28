@@ -64,7 +64,7 @@ This tool integrates with Singapore’s Data.gov.sg APIs to fetch up-to-date rai
 
 ### Testing fuzzy logic
 Run the built-in tests to check how fuzzy logic responds to different inputs:
-```bash
+bash
 java -cp "bin:lib/*" com.smartrideadvisor.test.ScenarioTester
 
 ---
