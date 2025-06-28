@@ -1,0 +1,42 @@
+FUNCTION_BLOCK advisor
+
+VAR_INPUT
+    rainfall : REAL;
+    windSpeed : REAL;
+END_VAR
+
+VAR_OUTPUT
+    risk : REAL;
+END_VAR
+
+FUZZIFY rainfall
+    TERM light := (0, 1) (5, 0);
+    TERM moderate := (3, 0) (5, 1) (10, 0);
+    TERM heavy := (8, 0) (15, 1);
+END_FUZZIFY
+
+FUZZIFY windSpeed
+    TERM calm := (0, 1) (5, 0);
+    TERM breezy := (3, 0) (6, 1) (9, 0);
+    TERM strong := (8, 0) (15, 1);
+END_FUZZIFY
+
+DEFUZZIFY risk
+    TERM low := (0, 1) (2, 0);
+    TERM medium := (3, 1) (5, 0);
+    TERM high := (6, 1) (10, 1);
+    METHOD : COG;
+    DEFAULT := 0;
+END_DEFUZZIFY
+
+RULEBLOCK No1
+    RULE 1 : IF rainfall IS light AND windSpeed IS calm THEN risk IS low;
+    RULE 2 : IF rainfall IS moderate AND windSpeed IS calm THEN risk IS medium;
+    RULE 3 : IF rainfall IS heavy OR windSpeed IS strong THEN risk IS high;
+    RULE 4 : IF rainfall IS moderate AND windSpeed IS breezy THEN risk IS medium;
+    RULE 5 : IF rainfall IS light AND windSpeed IS strong THEN risk IS medium;
+    RULE 6 : IF rainfall IS heavy AND windSpeed IS breezy THEN risk IS high;
+    RULE 7 : IF rainfall IS moderate AND windSpeed IS strong THEN risk IS high;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
