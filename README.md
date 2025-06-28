@@ -25,3 +25,81 @@ This tool integrates with Singapore’s Data.gov.sg APIs to fetch up-to-date rai
 
 ## Project Structure
 
+SmartRideAdvisor/
+│
+├── src/
+│ ├── com/smartrideadvisor/
+│ ├── controller/ # Main application logic and user interaction
+│ ├── model/ # Data models for API responses and weather data
+│ ├── service/ # Services to fetch and process weather data
+│ ├── fuzzy/ # Fuzzy logic engine integration
+│ └── utils/ # User interface utilities for console output
+│
+├── fcl/
+│ └── advisor.fcl # Fuzzy logic rule definitions
+│
+├── lib/ # External libraries (JFuzzyLogic, Jackson JSON)
+│
+└── README.md # This documentation file
+
+## Setup Instructions
+
+### Prerequisites
+
+- Java Development Kit (JDK) 11 or above installed.
+- Internet connection to fetch live weather data.
+- External libraries placed inside the `lib/` directory:
+  - `jfuzzylogic.jar`
+  - `jackson-annotations-x.x.x.jar`
+  - `jackson-core-x.x.x.jar`
+  - `jackson-databind-x.x.x.jar`
+
+### Building and Running
+
+1. Make sure you have Java installed (JDK 11+).  
+2. Download the required libraries into `lib/`:  
+   - `jfuzzylogic.jar`  
+   - `jackson-annotations.jar`  
+   - `jackson-core.jar`  
+   - `jackson-databind.jar`  
+3. Compile the code:  
+   ```bash
+   javac -cp "lib/*" -d bin $(find src -name "*.java")
+4. Run the app:
+   ```bash
+   java -cp "bin:lib/*" com.smartrideadvisor.controller.SmartRideAdvisor
+   (On Windows, replace : with ; in the classpath)
+   
+### Using the app
+- When prompted, enter a station ID to see local rainfall and wind speed, or just press Enter to see overall data.
+
+- The program shows the weather data and safety advice based on fuzzy logic.
+
+- After results, you can enter another station ID or type exit to quit.
+
+### Testing fuzzy logic
+Run the built-in tests to check how fuzzy logic responds to different inputs:
+```bash
+java -cp "bin:lib/*" com.smartrideadvisor.test.ScenarioTester
+
+### How fuzzy logic helps
+Fuzzy logic allows the program to handle vague weather conditions like “moderate rain” or “breezy wind” instead of strict thresholds. This leads to more natural, human-like safety advice.
+
+### Possible improvements
+- Add more weather inputs like temperature or visibility.
+- Build a graphical or mobile app version.
+- Save past data and advice for analysis.
+- Add notifications for sudden weather changes.
+
+### References
+- Data.gov.sg — Official Singapore government open data
+- JFuzzyLogic Library — http://jfuzzylogic.sourceforge.net/
+- Classic fuzzy logic papers by L. A. Zadeh and others
+
+Ride safe and enjoy your ride! 🏍️🌧️🌬️
+
+
+
+ 
+	
+  
