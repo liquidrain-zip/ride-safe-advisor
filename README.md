@@ -52,6 +52,24 @@ This tool integrates with Singapore’s Data.gov.sg APIs to fetch up-to-date rai
    (On Windows, replace : with ; in the classpath)
 
 ---
+
+### Project Structure
+```bash
+SmartRideAdvisor/
+├── src/
+│ ├── com/smartrideadvisor/
+│ │ ├── controller/ (main logic and user input)
+│ │ ├── model/ (data classes for API responses)
+│ │ ├── service/ (fetches and processes weather data)
+│ │ ├── fuzzy/ (fuzzy logic integration)
+│ │ └── utils/ (console output helpers)
+├── fcl/
+│ └── advisor.fcl (fuzzy logic rules)
+├── resources/ (external libraries: JFuzzyLogic, Jackson)
+└── README.md
+```
+
+---
    
 ### Using the app
 - When prompted, enter a station ID to see local rainfall and wind speed, or just press Enter to see overall data.
